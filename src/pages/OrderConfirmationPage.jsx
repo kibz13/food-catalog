@@ -86,7 +86,7 @@ export default function OrderConfirmationPage() {
                 <p className="text-xs text-gray-500">{product.unit} × {quantity}</p>
               </div>
               <span className="text-sm font-semibold flex-shrink-0">
-                {CURRENCY} {(product.price * quantity).toFixed(2)}
+                {CURRENCY} {(product.price * quantity).toLocaleString()}
               </span>
             </div>
           ))}
@@ -94,7 +94,7 @@ export default function OrderConfirmationPage() {
         <Separator className="my-3" />
         <div className="flex justify-between font-bold">
           <span>Subtotal</span>
-          <span>{CURRENCY} {order.subtotal.toFixed(2)}</span>
+          <span>{CURRENCY} {order.subtotal.toLocaleString()}</span>
         </div>
       </div>
 

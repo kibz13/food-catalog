@@ -108,7 +108,7 @@ export default function ProductDetailPage() {
 
           <div className="mt-3 flex items-baseline gap-2">
             <span className="text-3xl font-extrabold text-green-700">
-              {product.currency} {product.price.toFixed(2)}
+              {product.currency} {product.price.toLocaleString()}
             </span>
             <span className="text-gray-500 text-sm">{product.unit}</span>
           </div>
@@ -164,7 +164,7 @@ export default function ProductDetailPage() {
                 </button>
               </div>
               <span className="text-sm text-gray-500">
-                Total: <strong>{product.currency} {(product.price * qty).toFixed(2)}</strong>
+                Total: <strong>{product.currency} {(product.price * qty).toLocaleString()}</strong>
               </span>
             </div>
 

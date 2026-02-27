@@ -43,7 +43,7 @@ export default function CartItem({ item }) {
 
           {/* Line total */}
           <span className="text-sm font-semibold text-gray-900">
-            {product.currency} {(product.price * quantity).toFixed(2)}
+            {product.currency} {(product.price * quantity).toLocaleString()}
           </span>
         </div>
       </div>

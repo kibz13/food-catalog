@@ -50,7 +50,7 @@ const useCartStore = create(
       closeCart: () => set({ isOpen: false }),
     }),
     {
-      name: 'afrimarket-cart',
+      name: 'kibamarket-cart',
       partialize: (state) => ({ items: state.items }),
     }
   )

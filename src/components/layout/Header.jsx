@@ -23,7 +23,7 @@ export default function Header() {
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-600">
               <Leaf className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">AfriMarket</span>
+            <span className="text-xl font-bold text-gray-900">KibaMarket</span>
           </Link>
 
           {/* Desktop nav */}

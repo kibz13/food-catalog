@@ -13,10 +13,10 @@ export default function Footer() {
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-600">
                 <Leaf className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">AfriMarket</span>
+              <span className="text-xl font-bold text-white">KibaMarket</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
-              Your trusted source for fresh African food products. Quality ingredients
+              Your trusted source for fresh food products in Dar es Salaam. Quality ingredients
               delivered to your door.
             </p>
             <a
@@ -36,25 +36,25 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="tel:+233501234567"
+                  href="tel:+255787516300"
                   className="flex items-center gap-2 hover:text-white transition-colors"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0 text-green-500" />
-                  +233 50 123 4567
+                  +255 787 516 300
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hello@afrimarket.com"
+                  href="mailto:hello@kibamarket.com"
                   className="flex items-center gap-2 hover:text-white transition-colors"
                 >
                   <Mail className="h-4 w-4 flex-shrink-0 text-green-500" />
-                  hello@afrimarket.com
+                  hello@kibamarket.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 flex-shrink-0 text-green-500 mt-0.5" />
-                <span>East Legon, Accra, Ghana</span>
+                <span>Dar es Salaam, Tanzania</span>
               </li>
             </ul>
           </div>
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} AfriMarket. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KibaMarket. All rights reserved.</p>
           <div className="flex gap-4">
             <Link to="/catalog" className="hover:text-white transition-colors">Catalog</Link>
             <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>

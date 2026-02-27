@@ -1,4 +1,4 @@
-export const BUSINESS_PHONE = '233501234567'
+export const BUSINESS_PHONE = '255787516300'
 export const BUSINESS_WHATSAPP = `https://wa.me/${BUSINESS_PHONE}`
 
 export function buildWhatsAppUrl(order, businessPhone = BUSINESS_PHONE) {
@@ -34,11 +34,11 @@ export function buildWhatsAppUrl(order, businessPhone = BUSINESS_PHONE) {
       ({ product, quantity }) =>
         `- ${product.name} (${product.unit}) x${quantity} — ${currency} ${(
           product.price * quantity
-        ).toFixed(2)}`
+        ).toLocaleString()}`
     )
     .join('\n')
 
-  const message = `🛒 New Order\nName: ${customerName}\nPhone: ${customerPhone}\nDelivery: ${deliveryInfo}\nDate: ${dateStr}, ${timeWindow}\n\nItems:\n${itemLines}\n\nSubtotal: ${currency} ${subtotal.toFixed(2)}${notes ? `\nNote: ${notes}` : ''}`
+  const message = `🛒 New Order\nName: ${customerName}\nPhone: ${customerPhone}\nDelivery: ${deliveryInfo}\nDate: ${dateStr}, ${timeWindow}\n\nItems:\n${itemLines}\n\nSubtotal: ${currency} ${subtotal.toLocaleString()}${notes ? `\nNote: ${notes}` : ''}`
 
   return `https://wa.me/${businessPhone}?text=${encodeURIComponent(message)}`
 }

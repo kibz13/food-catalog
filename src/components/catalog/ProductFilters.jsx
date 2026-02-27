@@ -85,8 +85,8 @@ export default function ProductFilters({
               className="mb-2"
             />
             <div className="flex justify-between text-xs text-gray-600">
-              <span>GHS {priceRange[0]}</span>
-              <span>GHS {priceRange[1]}</span>
+              <span>TZS {priceRange[0].toLocaleString()}</span>
+              <span>TZS {priceRange[1].toLocaleString()}</span>
             </div>
           </div>
 

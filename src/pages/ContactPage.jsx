@@ -13,8 +13,8 @@ export default function ContactPage() {
     <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Contact & About</h1>
       <p className="text-gray-600 mb-10 max-w-2xl">
-        AfriMarket is your neighbourhood African food store, offering fresh produce,
-        pantry staples, and authentic West African ingredients. Browse online and order
+        KibaMarket is your neighbourhood food store in Dar es Salaam, offering fresh produce,
+        pantry staples, and quality ingredients. Browse online and order
         via WhatsApp — we'll take care of the rest.
       </p>
 
@@ -26,7 +26,7 @@ export default function ContactPage() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="tel:+233501234567"
+                  href="tel:+255787516300"
                   className="flex items-center gap-3 text-gray-700 hover:text-green-700 transition-colors group"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 group-hover:bg-green-200 transition-colors">
@@ -34,7 +34,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Phone (tap to call)</p>
-                    <p className="font-semibold">+233 50 123 4567</p>
+                    <p className="font-semibold">+255 787 516 300</p>
                   </div>
                 </a>
               </li>
@@ -51,14 +51,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">WhatsApp</p>
-                    <p className="font-semibold">+233 50 123 4567</p>
+                    <p className="font-semibold">+255 787 516 300</p>
                   </div>
                 </a>
               </li>
 
               <li>
                 <a
-                  href="mailto:hello@afrimarket.com"
+                  href="mailto:hello@kibamarket.com"
                   className="flex items-center gap-3 text-gray-700 hover:text-green-700 transition-colors group"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 group-hover:bg-green-200 transition-colors">
@@ -66,7 +66,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Email</p>
-                    <p className="font-semibold">hello@afrimarket.com</p>
+                    <p className="font-semibold">hello@kibamarket.com</p>
                   </div>
                 </a>
               </li>
@@ -77,10 +77,10 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Address</p>
-                  <p className="font-semibold">14 Market Street</p>
-                  <p className="text-sm text-gray-600">East Legon, Accra, Ghana</p>
+                  <p className="font-semibold">Dar es Salaam</p>
+                  <p className="text-sm text-gray-600">Dar es Salaam, Tanzania</p>
                   <a
-                    href="https://maps.google.com/?q=East+Legon,+Accra,+Ghana"
+                    href="https://maps.google.com/?q=Dar+es+Salaam,+Tanzania"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-1 inline-flex items-center gap-1 text-xs text-green-600 hover:underline"
@@ -116,8 +116,8 @@ export default function ContactPage() {
           {/* Map */}
           <div className="rounded-xl overflow-hidden border">
             <iframe
-              title="AfriMarket location map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.5073046226!2d-0.15!3d5.64!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzgnMjQuMCJOIDDCsDknMDAuMCJX!5e0!3m2!1sen!2sgh!4v1000000000000"
+              title="KibaMarket location map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253556.08097321153!2d39.0786506!3d-6.8160837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4bae169bd6f1%3A0x940f6b26a086a1dd!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2stz!4v1700000000000"
               width="100%"
               height="220"
               style={{ border: 0 }}

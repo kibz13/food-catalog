@@ -279,7 +279,7 @@ export default function CheckoutPage() {
                     <p className="text-xs text-gray-500">×{quantity}</p>
                   </div>
                   <span className="text-sm font-semibold flex-shrink-0">
-                    {CURRENCY} {(product.price * quantity).toFixed(2)}
+                    {CURRENCY} {(product.price * quantity).toLocaleString()}
                   </span>
                 </div>
               ))}
@@ -288,7 +288,7 @@ export default function CheckoutPage() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="font-medium">{CURRENCY} {subtotal.toFixed(2)}</span>
+                <span className="font-medium">{CURRENCY} {subtotal.toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-gray-500 text-xs">
                 <span>Delivery fee</span>
@@ -298,7 +298,7 @@ export default function CheckoutPage() {
             <Separator className="my-3" />
             <div className="flex justify-between font-bold">
               <span>Total (excl. delivery)</span>
-              <span>{CURRENCY} {subtotal.toFixed(2)}</span>
+              <span>{CURRENCY} {subtotal.toLocaleString()}</span>
             </div>
           </div>
         </aside>

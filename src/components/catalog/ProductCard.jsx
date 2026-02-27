@@ -56,7 +56,7 @@ export default function ProductCard({ product }) {
         <div className="flex items-center justify-between gap-2">
           <div>
             <span className="text-base font-bold text-gray-900">
-              {product.currency} {product.price.toFixed(2)}
+              {product.currency} {product.price.toLocaleString()}
             </span>
             <span className="ml-1 text-xs text-gray-500">{product.unit}</span>
           </div>
