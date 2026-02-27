@@ -1,6 +1,6 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "regions": ["jnb1"],
+  "regions": ["bom1"],
   "headers": [
     {
       "source": "/assets/(.*)",
