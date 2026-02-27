@@ -5,6 +5,7 @@ export const CATEGORIES = [
   { id: 'produce', label: 'Fresh Produce', emoji: '🥦' },
   { id: 'oils', label: 'Oils & Condiments', emoji: '🫙' },
   { id: 'dairy', label: 'Dairy & Eggs', emoji: '🥛' },
+  { id: 'superfoods', label: 'Superfoods', emoji: '🌱' },
 ]
 
 export const CURRENCY = 'TZS'
@@ -266,6 +267,24 @@ export const products = [
     inStock: false,
     featured: false,
     attributes: { weight: '150g', brand: 'Dar Bites' },
+  },
+  {
+    id: 'p016',
+    name: 'Organic Chia Seeds',
+    description:
+      'Premium organic chia seeds, one of nature\'s most nutrient-dense superfoods. Packed with omega-3 fatty acids, fibre, protein, calcium, and antioxidants. Add to smoothies, yoghurt, juices, or soak overnight for chia pudding. Tasteless and odourless — easy to incorporate into any meal or drink.',
+    shortDescription: 'Nutrient-dense organic chia seeds — omega-3, fibre & protein',
+    price: 9500,
+    currency: CURRENCY,
+    unit: 'per 250g pack',
+    category: 'superfoods',
+    images: [
+      'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?w=600&q=80',
+      'https://images.unsplash.com/photo-1585559604959-cb0bd50a6a1f?w=600&q=80',
+    ],
+    inStock: true,
+    featured: true,
+    attributes: { weight: '250g', origin: 'Imported', brand: 'PureSeed' },
   },
 ]
 
