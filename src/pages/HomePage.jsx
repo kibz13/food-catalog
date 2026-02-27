@@ -25,12 +25,12 @@ export default function HomePage() {
         />
         <div className="relative z-10 mx-auto max-w-3xl px-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight drop-shadow-lg">
-            Fresh African Food,<br />
-            <span className="text-green-400">Delivered to You</span>
+            Shop for<br />
+            <span className="text-green-400">Health Food Products</span>
           </h1>
           <p className="mt-4 text-lg text-gray-100 drop-shadow max-w-xl mx-auto">
-            Browse our catalog of authentic African ingredients and order via WhatsApp.
-            Fresh, local, and delivered fast.
+            Browse good natural foods to keep you strong and healthy —
+            order by WhatsApp.
           </p>
           <Button
             asChild
