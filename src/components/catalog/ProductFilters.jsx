@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { CATEGORIES } from '@/data/products'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function ProductFilters({
   selectedCategories,
@@ -17,6 +18,7 @@ export default function ProductFilters({
   onReset,
 }) {
   const [collapsed, setCollapsed] = useState(false)
+  const { t } = useLanguage()
 
   const hasActiveFilters =
     selectedCategories.length > 0 ||
@@ -26,7 +28,6 @@ export default function ProductFilters({
 
   return (
     <div className="rounded-xl border bg-white overflow-hidden">
-      {/* Header */}
       <div
         className="flex items-center justify-between px-4 py-3 border-b cursor-pointer select-none"
         onClick={() => setCollapsed((v) => !v)}
@@ -38,10 +39,10 @@ export default function ProductFilters({
       >
         <div className="flex items-center gap-2 font-semibold text-sm">
           <SlidersHorizontal className="h-4 w-4" />
-          Filters
+          {t('catalog.filters')}
           {hasActiveFilters && (
             <span className="rounded-full bg-green-600 px-1.5 py-0.5 text-[10px] font-bold text-white">
-              Active
+              {t('catalog.filtersActive')}
             </span>
           )}
         </div>
@@ -53,7 +54,7 @@ export default function ProductFilters({
           {/* Category */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">
-              Category
+              {t('catalog.category')}
             </p>
             <div className="space-y-2.5">
               {CATEGORIES.map((cat) => (
@@ -74,12 +75,12 @@ export default function ProductFilters({
           {/* Price Range */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">
-              Price Range
+              {t('catalog.priceRange')}
             </p>
             <Slider
               min={0}
               max={maxPrice}
-              step={1}
+              step={500}
               value={priceRange}
               onValueChange={onPriceRangeChange}
               className="mb-2"
@@ -98,14 +99,13 @@ export default function ProductFilters({
               onCheckedChange={onInStockChange}
             />
             <Label htmlFor="instock" className="cursor-pointer font-normal">
-              In stock only
+              {t('catalog.inStockOnly')}
             </Label>
           </div>
 
-          {/* Reset */}
           {hasActiveFilters && (
             <Button variant="outline" size="sm" onClick={onReset} className="w-full">
-              Reset Filters
+              {t('catalog.reset')}
             </Button>
           )}
         </div>

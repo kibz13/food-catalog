@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { buildWhatsAppUrl } from '@/utils/whatsapp'
 import { CURRENCY } from '@/data/products'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function OrderConfirmationPage() {
   const [order, setOrder] = useState(null)
   const [copied, setCopied] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const raw = sessionStorage.getItem('lastOrder')
@@ -20,9 +22,9 @@ export default function OrderConfirmationPage() {
   if (!order) {
     return (
       <main className="mx-auto max-w-3xl px-4 py-20 text-center">
-        <p className="text-xl font-semibold text-gray-700">No order found.</p>
+        <p className="text-xl font-semibold text-gray-700">{t('confirm.noOrder')}</p>
         <Button asChild className="mt-4" variant="outline">
-          <Link to="/">Go Home</Link>
+          <Link to="/">{t('confirm.goHome')}</Link>
         </Button>
       </main>
     )
@@ -41,49 +43,45 @@ export default function OrderConfirmationPage() {
       {/* Success */}
       <div className="text-center mb-8">
         <CheckCircle2 className="mx-auto h-16 w-16 text-green-500 mb-4" aria-hidden="true" />
-        <h1 className="text-3xl font-extrabold text-gray-900">Order Sent!</h1>
-        <p className="mt-2 text-gray-600">
-          Thanks, <strong>{order.customerName}</strong>! Your order has been sent to KibaMarket via WhatsApp.
-        </p>
+        <h1 className="text-3xl font-extrabold text-gray-900">{t('confirm.title')}</h1>
+        <p className="mt-2 text-gray-600">{t('confirm.subtitle', order.customerName)}</p>
       </div>
 
-      {/* Callback notice — most prominent card */}
+      {/* Callback notice */}
       <div className="rounded-xl border-2 border-green-200 bg-green-50 p-5 mb-6 flex items-start gap-4">
         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-600">
           <Phone className="h-6 w-6 text-white" />
         </div>
         <div>
-          <p className="font-bold text-green-900 text-lg">We'll call you back!</p>
-          <p className="text-sm text-green-800 mt-0.5">
-            Expect a call from us at
-          </p>
+          <p className="font-bold text-green-900 text-lg">{t('confirm.callbackTitle')}</p>
+          <p className="text-sm text-green-800 mt-0.5">{t('confirm.callbackExpect')}</p>
           <p className="text-2xl font-extrabold text-green-700 mt-1 tracking-wide">
             {order.customerPhone}
           </p>
-          <p className="text-xs text-green-600 mt-1.5">
-            We'll confirm your order and arrange delivery on the call.
-          </p>
+          <p className="text-xs text-green-600 mt-1.5">{t('confirm.callbackNote')}</p>
         </div>
       </div>
 
       {/* Order ref */}
       <div className="rounded-xl border bg-gray-50 p-4 mb-5 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">Order Reference</p>
+          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{t('confirm.ref')}</p>
           <p className="text-lg font-bold font-mono text-gray-800 mt-0.5">{order.ref}</p>
         </div>
         <button
           onClick={copyRef}
           className="flex h-9 w-9 items-center justify-center rounded-md border bg-white text-gray-500 hover:text-gray-800 transition-colors flex-shrink-0"
-          aria-label="Copy order reference"
+          aria-label={t('confirm.copyRef')}
         >
           {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
         </button>
       </div>
 
-      {/* Order items */}
+      {/* Items */}
       <div className="rounded-xl border bg-white p-5 mb-6">
-        <h2 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">Items Ordered</h2>
+        <h2 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+          {t('confirm.items')}
+        </h2>
         <div className="space-y-3">
           {order.items.map(({ product, quantity }) => (
             <div key={product.id} className="flex items-center gap-3">
@@ -105,15 +103,15 @@ export default function OrderConfirmationPage() {
         </div>
         <Separator className="my-3" />
         <div className="flex justify-between font-bold">
-          <span>Subtotal</span>
+          <span>{t('confirm.subtotal')}</span>
           <span>{CURRENCY} {order.subtotal.toLocaleString()}</span>
         </div>
         {order.notes && (
-          <p className="mt-2 text-xs text-gray-500 italic">Note: {order.notes}</p>
+          <p className="mt-2 text-xs text-gray-500 italic">{t('confirm.note')}: {order.notes}</p>
         )}
       </div>
 
-      {/* Resend WhatsApp */}
+      {/* Resend */}
       <a
         href={whatsappUrl}
         target="_blank"
@@ -121,15 +119,15 @@ export default function OrderConfirmationPage() {
         className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 text-white font-semibold hover:bg-[#1db954] transition-colors mb-3"
       >
         <MessageCircle className="h-5 w-5" />
-        Resend Order on WhatsApp
+        {t('confirm.resend')}
       </a>
 
       <div className="flex gap-3">
         <Button asChild variant="outline" className="flex-1">
-          <Link to="/">Home</Link>
+          <Link to="/">{t('confirm.home')}</Link>
         </Button>
         <Button asChild className="flex-1 bg-green-600 hover:bg-green-700">
-          <Link to="/catalog">Keep Shopping</Link>
+          <Link to="/catalog">{t('confirm.keepShopping')}</Link>
         </Button>
       </div>
     </main>

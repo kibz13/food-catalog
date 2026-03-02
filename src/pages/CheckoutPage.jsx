@@ -11,6 +11,7 @@ import { Separator } from '@/components/ui/separator'
 import useCartStore, { useCartSubtotal } from '@/store/cartStore'
 import { buildWhatsAppUrl, generateOrderRef } from '@/utils/whatsapp'
 import { CURRENCY } from '@/data/products'
+import { useLanguage } from '@/context/LanguageContext'
 
 const schema = z.object({
   customerName: z.string().min(2, 'Please enter your full name'),
@@ -26,6 +27,7 @@ export default function CheckoutPage() {
   const clearCart = useCartStore((s) => s.clearCart)
   const subtotal = useCartSubtotal()
   const navigate = useNavigate()
+  const { t } = useLanguage()
 
   const {
     register,
@@ -37,9 +39,9 @@ export default function CheckoutPage() {
     return (
       <main className="mx-auto max-w-3xl px-4 py-20 text-center">
         <ShoppingBag className="mx-auto h-16 w-16 text-gray-200 mb-4" />
-        <p className="text-xl font-semibold text-gray-700">Your cart is empty.</p>
+        <p className="text-xl font-semibold text-gray-700">{t('checkout.emptyCart')}</p>
         <Button asChild className="mt-4 bg-green-600 hover:bg-green-700">
-          <Link to="/catalog">Browse Products</Link>
+          <Link to="/catalog">{t('cart.browse')}</Link>
         </Button>
       </main>
     )
@@ -55,40 +57,29 @@ export default function CheckoutPage() {
       currency: CURRENCY,
       placedAt: new Date().toISOString(),
     }
-
     const whatsappUrl = buildWhatsAppUrl(order)
-
-    // Save for confirmation page, clear cart
     sessionStorage.setItem('lastOrder', JSON.stringify(order))
     clearCart()
-
-    // Open WhatsApp, then go to confirmation
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
     navigate('/order-confirmation')
   }
 
   return (
     <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Send Your Order</h1>
-      <p className="text-gray-500 mb-8">
-        Enter your name and number — we'll send the order to WhatsApp and call you back to confirm.
-      </p>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('checkout.title')}</h1>
+      <p className="text-gray-500 mb-8">{t('checkout.subtitle')}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
         {/* Form */}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="md:col-span-3 space-y-5"
-          noValidate
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="md:col-span-3 space-y-5" noValidate>
           <div className="rounded-xl border bg-white p-6 space-y-5">
             {/* Name */}
             <div>
-              <Label htmlFor="customerName">Your Name *</Label>
+              <Label htmlFor="customerName">{t('checkout.name')} *</Label>
               <Input
                 id="customerName"
                 {...register('customerName')}
-                placeholder="e.g. Amina Hassan"
+                placeholder={t('checkout.namePlaceholder')}
                 className={`mt-1.5 ${errors.customerName ? 'border-red-500' : ''}`}
                 autoComplete="name"
               />
@@ -101,18 +92,16 @@ export default function CheckoutPage() {
 
             {/* Phone */}
             <div>
-              <Label htmlFor="customerPhone">Phone Number *</Label>
+              <Label htmlFor="customerPhone">{t('checkout.phone')} *</Label>
               <Input
                 id="customerPhone"
                 type="tel"
                 {...register('customerPhone')}
-                placeholder="+255 7XX XXX XXX"
+                placeholder={t('checkout.phonePlaceholder')}
                 className={`mt-1.5 ${errors.customerPhone ? 'border-red-500' : ''}`}
                 autoComplete="tel"
               />
-              <p className="mt-1 text-xs text-gray-500">
-                We'll call you at this number to confirm your order.
-              </p>
+              <p className="mt-1 text-xs text-gray-500">{t('checkout.phoneHint')}</p>
               {errors.customerPhone && (
                 <p className="mt-1 text-xs text-red-600" role="alert">
                   {errors.customerPhone.message}
@@ -122,17 +111,19 @@ export default function CheckoutPage() {
 
             {/* Notes */}
             <div>
-              <Label htmlFor="notes">Notes <span className="text-gray-400 font-normal">(optional)</span></Label>
+              <Label htmlFor="notes">
+                {t('checkout.notes')}{' '}
+                <span className="text-gray-400 font-normal">{t('checkout.notesOptional')}</span>
+              </Label>
               <Textarea
                 id="notes"
                 {...register('notes')}
-                placeholder="Any special requests or delivery instructions…"
+                placeholder={t('checkout.notesPlaceholder')}
                 className="mt-1.5 min-h-[80px]"
               />
             </div>
           </div>
 
-          {/* Submit */}
           <Button
             type="submit"
             disabled={isSubmitting}
@@ -140,12 +131,10 @@ export default function CheckoutPage() {
             className="w-full bg-[#25D366] hover:bg-[#1db954] text-white text-base font-semibold"
           >
             <MessageCircle className="mr-2 h-5 w-5" />
-            {isSubmitting ? 'Sending…' : 'Send Order via WhatsApp'}
+            {isSubmitting ? t('checkout.sending') : t('checkout.send')}
           </Button>
 
-          <p className="text-center text-xs text-gray-400">
-            Tapping the button above will open WhatsApp with your order details. We'll call you back to confirm.
-          </p>
+          <p className="text-center text-xs text-gray-400">{t('checkout.hint')}</p>
         </form>
 
         {/* Order summary */}
@@ -153,7 +142,7 @@ export default function CheckoutPage() {
           <div className="rounded-xl border bg-white p-5 sticky top-20">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <ShoppingBag className="h-4 w-4" />
-              Order Summary
+              {t('checkout.summary')}
             </h2>
 
             <div className="space-y-3 max-h-72 overflow-y-auto">
@@ -179,10 +168,10 @@ export default function CheckoutPage() {
             <Separator className="my-4" />
 
             <div className="flex justify-between font-bold text-base">
-              <span>Subtotal</span>
+              <span>{t('cart.subtotal')}</span>
               <span>{CURRENCY} {subtotal.toLocaleString()}</span>
             </div>
-            <p className="text-xs text-gray-400 mt-1 text-right">Delivery TBD on callback</p>
+            <p className="text-xs text-gray-400 mt-1 text-right">{t('checkout.deliveryTbd')}</p>
           </div>
         </aside>
       </div>

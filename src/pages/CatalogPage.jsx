@@ -3,31 +3,21 @@ import { useSearchParams } from 'react-router-dom'
 import Fuse from 'fuse.js'
 import { ArrowUpDown } from 'lucide-react'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select'
 import SearchBar from '@/components/catalog/SearchBar'
 import ProductFilters from '@/components/catalog/ProductFilters'
 import ProductGrid from '@/components/catalog/ProductGrid'
 import { products } from '@/data/products'
+import { useLanguage } from '@/context/LanguageContext'
 
-const MAX_PRICE = Math.ceil(Math.max(...products.map((p) => p.price)) / 10) * 10
+const MAX_PRICE = Math.ceil(Math.max(...products.map((p) => p.price)) / 1000) * 1000
 
 const fuse = new Fuse(products, {
   keys: ['name', 'shortDescription', 'description', 'category'],
   threshold: 0.35,
   includeScore: true,
 })
-
-const SORT_OPTIONS = [
-  { value: 'default', label: 'Default' },
-  { value: 'price-asc', label: 'Price: Low to High' },
-  { value: 'price-desc', label: 'Price: High to Low' },
-  { value: 'name-asc', label: 'Name: A–Z' },
-]
 
 export default function CatalogPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -38,8 +28,8 @@ export default function CatalogPage() {
   const [priceRange, setPriceRange] = useState([0, MAX_PRICE])
   const [inStockOnly, setInStockOnly] = useState(false)
   const [sort, setSort] = useState('default')
+  const { t } = useLanguage()
 
-  // Sync category from URL param on mount
   useEffect(() => {
     const cat = searchParams.get('category')
     if (cat) setSelectedCategories([cat])
@@ -76,33 +66,31 @@ export default function CatalogPage() {
     )
 
     switch (sort) {
-      case 'price-asc':
-        result.sort((a, b) => a.price - b.price)
-        break
-      case 'price-desc':
-        result.sort((a, b) => b.price - a.price)
-        break
-      case 'name-asc':
-        result.sort((a, b) => a.name.localeCompare(b.name))
-        break
-      default:
-        break
+      case 'price-asc': result.sort((a, b) => a.price - b.price); break
+      case 'price-desc': result.sort((a, b) => b.price - a.price); break
+      case 'name-asc': result.sort((a, b) => a.name.localeCompare(b.name)); break
+      default: break
     }
 
     return result
   }, [query, selectedCategories, priceRange, inStockOnly, sort])
 
+  const sortOptions = [
+    { value: 'default', label: t('catalog.sortDefault') },
+    { value: 'price-asc', label: t('catalog.sortPriceAsc') },
+    { value: 'price-desc', label: t('catalog.sortPriceDesc') },
+    { value: 'name-asc', label: t('catalog.sortNameAsc') },
+  ]
+
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Product Catalog</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">{t('catalog.title')}</h1>
 
-      {/* Search */}
       <div className="mb-6">
         <SearchBar value={query} onChange={setQuery} />
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Sidebar Filters */}
         <aside className="lg:w-64 flex-shrink-0">
           <ProductFilters
             selectedCategories={selectedCategories}
@@ -116,12 +104,10 @@ export default function CatalogPage() {
           />
         </aside>
 
-        {/* Results */}
         <div className="flex-1 min-w-0">
-          {/* Sort row */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-gray-600">
-              <span className="font-semibold">{filtered.length}</span> product{filtered.length !== 1 ? 's' : ''} found
+              <span className="font-semibold">{t('catalog.found', filtered.length)}</span>
             </p>
             <div className="flex items-center gap-2">
               <ArrowUpDown className="h-4 w-4 text-gray-400" />
@@ -130,10 +116,8 @@ export default function CatalogPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {SORT_OPTIONS.map((o) => (
-                    <SelectItem key={o.value} value={o.value}>
-                      {o.label}
-                    </SelectItem>
+                  {sortOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>

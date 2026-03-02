@@ -9,11 +9,13 @@ import { Badge } from '@/components/ui/badge'
 import ProductCard from '@/components/catalog/ProductCard'
 import useCartStore from '@/store/cartStore'
 import { getProductById, getProductsByCategory } from '@/data/products'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function ProductDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const product = getProductById(id)
+  const { t } = useLanguage()
 
   const [qty, setQty] = useState(1)
   const [mainIdx, setMainIdx] = useState(0)
@@ -25,9 +27,9 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <main className="mx-auto max-w-3xl px-4 py-20 text-center">
-        <p className="text-xl font-semibold text-gray-700">Product not found.</p>
+        <p className="text-xl font-semibold text-gray-700">{t('product.notFound')}</p>
         <Button asChild className="mt-4">
-          <Link to="/catalog">Back to Catalog</Link>
+          <Link to="/catalog">{t('product.backToCatalog')}</Link>
         </Button>
       </main>
     )
@@ -39,26 +41,24 @@ export default function ProductDetailPage() {
 
   function handleAddToCart() {
     addItem(product, qty)
-    toast.success(`${product.name} × ${qty} added to cart!`)
+    toast.success(`${product.name} × ${qty} — ${t('product.inStock')}`)
   }
 
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      {/* Breadcrumb */}
       <nav className="mb-6" aria-label="Breadcrumb">
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 transition-colors"
         >
           <ChevronLeft className="h-4 w-4" />
-          Back
+          {t('product.back')}
         </button>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Image Gallery */}
         <div>
-          {/* Main image */}
           <div
             className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 cursor-zoom-in"
             onClick={() => { setLightboxOpen(true); setLightboxIdx(mainIdx) }}
@@ -70,7 +70,6 @@ export default function ProductDetailPage() {
               className="h-full w-full object-cover"
             />
           </div>
-          {/* Thumbnails */}
           {product.images.length > 1 && (
             <div className="mt-3 flex gap-2">
               {product.images.map((img, i) => (
@@ -80,10 +79,10 @@ export default function ProductDetailPage() {
                   className={`relative h-16 w-16 overflow-hidden rounded-md border-2 transition-colors ${
                     i === mainIdx ? 'border-green-600' : 'border-transparent'
                   }`}
-                  aria-label={`View image ${i + 1}`}
+                  aria-label={t('product.viewImage', i + 1)}
                   aria-pressed={i === mainIdx}
                 >
-                  <img src={img} alt={`${product.name} view ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
+                  <img src={img} alt={`${product.name} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>
@@ -100,7 +99,7 @@ export default function ProductDetailPage() {
         <div>
           <div className="mb-2">
             <Badge variant={product.inStock ? 'success' : 'danger'}>
-              {product.inStock ? 'In Stock' : 'Out of Stock'}
+              {product.inStock ? t('product.inStock') : t('product.outOfStock')}
             </Badge>
           </div>
 
@@ -119,11 +118,10 @@ export default function ProductDetailPage() {
             ))}
           </div>
 
-          {/* Attributes */}
           {product.attributes && Object.keys(product.attributes).length > 0 && (
             <div className="mt-5 rounded-lg border bg-gray-50 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">
-                Product Details
+                {t('product.details')}
               </p>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
                 {Object.entries(product.attributes).map(([key, val]) => (
@@ -136,14 +134,14 @@ export default function ProductDetailPage() {
             </div>
           )}
 
-          {/* Add to cart controls */}
+          {/* Add to cart */}
           <div className="mt-6 space-y-3">
             <div className="flex items-center gap-3">
               <div className="flex items-center rounded-md border">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
                   className="flex h-11 w-11 items-center justify-center hover:bg-gray-100 transition-colors rounded-l-md"
-                  aria-label="Decrease quantity"
+                  aria-label={t('cart.decrease')}
                 >
                   <Minus className="h-4 w-4" />
                 </button>
@@ -153,18 +151,18 @@ export default function ProductDetailPage() {
                   value={qty}
                   onChange={(e) => setQty(Math.max(1, parseInt(e.target.value) || 1))}
                   className="w-14 text-center text-base font-semibold border-x focus:outline-none h-11"
-                  aria-label="Quantity"
+                  aria-label={t('product.quantity') ?? 'Quantity'}
                 />
                 <button
                   onClick={() => setQty((q) => q + 1)}
                   className="flex h-11 w-11 items-center justify-center hover:bg-gray-100 transition-colors rounded-r-md"
-                  aria-label="Increase quantity"
+                  aria-label={t('cart.increase')}
                 >
                   <Plus className="h-4 w-4" />
                 </button>
               </div>
               <span className="text-sm text-gray-500">
-                Total: <strong>{product.currency} {(product.price * qty).toLocaleString()}</strong>
+                {t('product.total')}: <strong>{product.currency} {(product.price * qty).toLocaleString()}</strong>
               </span>
             </div>
 
@@ -175,7 +173,7 @@ export default function ProductDetailPage() {
               className="w-full bg-green-600 hover:bg-green-700 text-white"
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
-              {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+              {product.inStock ? t('product.addToCart') : t('product.outOfStock')}
             </Button>
           </div>
         </div>
@@ -184,7 +182,7 @@ export default function ProductDetailPage() {
       {/* Related Products */}
       {related.length > 0 && (
         <section className="mt-14">
-          <h2 className="text-xl font-bold text-gray-900 mb-5">More from this Category</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-5">{t('product.related')}</h2>
           <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:overflow-visible">
             {related.map((p) => (
               <div key={p.id} className="min-w-[220px] sm:min-w-0 flex-shrink-0 sm:flex-shrink">

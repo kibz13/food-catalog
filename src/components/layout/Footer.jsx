@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Leaf } from 'lucide-react'
 import { BUSINESS_WHATSAPP } from '@/utils/whatsapp'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
@@ -15,10 +18,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold text-white">KibaMarket</span>
             </div>
-            <p className="text-sm leading-relaxed text-gray-400">
-              Your trusted source for fresh food products in Dar es Salaam. Quality ingredients
-              delivered to your door.
-            </p>
+            <p className="text-sm leading-relaxed text-gray-400">{t('footer.tagline')}</p>
             <a
               href={BUSINESS_WHATSAPP}
               target="_blank"
@@ -26,28 +26,22 @@ export default function Footer() {
               className="mt-4 inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition-colors"
             >
               <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
+              {t('footer.whatsapp')}
             </a>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.contactTitle')}</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <a
-                  href="tel:+255787516300"
-                  className="flex items-center gap-2 hover:text-white transition-colors"
-                >
+                <a href="tel:+255787516300" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Phone className="h-4 w-4 flex-shrink-0 text-green-500" />
                   +255 787 516 300
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:hello@kibamarket.com"
-                  className="flex items-center gap-2 hover:text-white transition-colors"
-                >
+                <a href="mailto:hello@kibamarket.com" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Mail className="h-4 w-4 flex-shrink-0 text-green-500" />
                   hello@kibamarket.com
                 </a>
@@ -64,7 +58,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">
               <span className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-green-500" />
-                Operating Hours
+                {t('footer.hoursTitle')}
               </span>
             </h3>
             <ul className="space-y-2 text-sm">
@@ -83,10 +77,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} KibaMarket. All rights reserved.</p>
+          <p>{t('footer.rights', new Date().getFullYear())}</p>
           <div className="flex gap-4">
-            <Link to="/catalog" className="hover:text-white transition-colors">Catalog</Link>
-            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+            <Link to="/catalog" className="hover:text-white transition-colors">{t('nav.catalog')}</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
           </div>
         </div>
       </div>

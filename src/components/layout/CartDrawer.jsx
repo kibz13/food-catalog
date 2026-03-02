@@ -2,16 +2,17 @@ import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import CartItem from '@/components/cart/CartItem'
 import CartSummary from '@/components/cart/CartSummary'
 import useCartStore, { useCartItemCount } from '@/store/cartStore'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function CartDrawer() {
   const isOpen = useCartStore((s) => s.isOpen)
   const closeCart = useCartStore((s) => s.closeCart)
   const items = useCartStore((s) => s.items)
   const itemCount = useCartItemCount()
+  const { t } = useLanguage()
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
@@ -19,7 +20,7 @@ export default function CartDrawer() {
         <SheetHeader className="px-6 py-4 border-b">
           <SheetTitle className="flex items-center gap-2">
             <ShoppingBag className="h-5 w-5" />
-            Your Cart
+            {t('cart.title')}
             {itemCount > 0 && (
               <span className="ml-1 rounded-full bg-green-600 px-2 py-0.5 text-xs font-bold text-white">
                 {itemCount}
@@ -32,11 +33,11 @@ export default function CartDrawer() {
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
             <ShoppingBag className="h-16 w-16 text-gray-200" />
             <div>
-              <p className="text-lg font-semibold text-gray-700">Your cart is empty</p>
-              <p className="mt-1 text-sm text-gray-500">Add some fresh products to get started!</p>
+              <p className="text-lg font-semibold text-gray-700">{t('cart.empty')}</p>
+              <p className="mt-1 text-sm text-gray-500">{t('cart.emptyDesc')}</p>
             </div>
             <Button asChild variant="outline" onClick={closeCart}>
-              <Link to="/catalog">Browse Products</Link>
+              <Link to="/catalog">{t('cart.browse')}</Link>
             </Button>
           </div>
         ) : (
@@ -48,7 +49,6 @@ export default function CartDrawer() {
                 ))}
               </div>
             </div>
-
             <div className="border-t px-6 py-4">
               <CartSummary onCheckout={closeCart} />
             </div>

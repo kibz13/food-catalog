@@ -4,15 +4,17 @@ import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import useCartStore from '@/store/cartStore'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function ProductCard({ product }) {
   const addItem = useCartStore((s) => s.addItem)
+  const { t } = useLanguage()
 
   function handleAddToCart(e) {
     e.preventDefault()
     e.stopPropagation()
     addItem(product, 1)
-    toast.success(`${product.name} added to cart!`, { duration: 2000 })
+    toast.success(`${product.name} — ${t('product.inStock')}`, { duration: 2000 })
   }
 
   return (
@@ -20,7 +22,6 @@ export default function ProductCard({ product }) {
       to={`/product/${product.id}`}
       className="group block rounded-xl border bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
     >
-      {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
         <img
           src={product.images[0]}
@@ -31,13 +32,12 @@ export default function ProductCard({ product }) {
         {!product.inStock && (
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
             <span className="rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-gray-800">
-              Out of Stock
+              {t('product.outOfStock')}
             </span>
           </div>
         )}
       </div>
 
-      {/* Content */}
       <div className="p-4">
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="text-sm font-semibold text-gray-900 line-clamp-1 flex-1">
@@ -47,7 +47,7 @@ export default function ProductCard({ product }) {
             variant={product.inStock ? 'success' : 'danger'}
             className="flex-shrink-0 text-[10px]"
           >
-            {product.inStock ? 'In Stock' : 'Out of Stock'}
+            {product.inStock ? t('product.inStock') : t('product.outOfStock')}
           </Badge>
         </div>
 
@@ -66,10 +66,10 @@ export default function ProductCard({ product }) {
             onClick={handleAddToCart}
             disabled={!product.inStock}
             className="h-9 bg-green-600 hover:bg-green-700 text-white flex-shrink-0"
-            aria-label={`Add ${product.name} to cart`}
+            aria-label={t('product.addLabel', product.name)}
           >
             <ShoppingCart className="h-4 w-4" />
-            <span className="hidden sm:inline ml-1">Add</span>
+            <span className="hidden sm:inline ml-1">{t('product.add')}</span>
           </Button>
         </div>
       </div>

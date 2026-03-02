@@ -1,17 +1,18 @@
 import { Link, NavLink } from 'react-router-dom'
 import { ShoppingCart, Menu, X, Leaf } from 'lucide-react'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import useCartStore, { useCartItemCount } from '@/store/cartStore'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const itemCount = useCartItemCount()
   const toggleCart = useCartStore((s) => s.toggleCart)
+  const { t, lang, toggleLang } = useLanguage()
 
   const navLinks = [
-    { to: '/catalog', label: 'Catalog' },
-    { to: '/contact', label: 'Contact' },
+    { to: '/catalog', label: t('nav.catalog') },
+    { to: '/contact', label: t('nav.contact') },
   ]
 
   return (
@@ -43,12 +44,22 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            {/* Cart button */}
+          <div className="flex items-center gap-1">
+            {/* Language toggle */}
+            <button
+              onClick={toggleLang}
+              className="flex h-9 items-center gap-1 rounded-full border border-gray-200 px-3 text-xs font-semibold text-gray-600 hover:border-green-400 hover:text-green-700 transition-colors"
+              aria-label={lang === 'en' ? 'Switch to Swahili' : 'Badili kwa Kiingereza'}
+            >
+              <span className="text-sm">{lang === 'en' ? '🇹🇿' : '🇬🇧'}</span>
+              {lang === 'en' ? 'SW' : 'EN'}
+            </button>
+
+            {/* Cart */}
             <button
               onClick={toggleCart}
               className="relative flex h-11 w-11 items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-              aria-label={`Open cart, ${itemCount} item${itemCount !== 1 ? 's' : ''}`}
+              aria-label={t('nav.openCart', itemCount)}
             >
               <ShoppingCart className="h-5 w-5 text-gray-700" />
               {itemCount > 0 && (
@@ -65,7 +76,7 @@ export default function Header() {
             <button
               className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-gray-100 transition-colors md:hidden"
               onClick={() => setMobileMenuOpen((v) => !v)}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
