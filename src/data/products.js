@@ -1,278 +1,19 @@
 export const CATEGORIES = [
-  { id: 'grains', label: 'Grains & Rice', emoji: '🌾' },
-  { id: 'beverages', label: 'Beverages', emoji: '🥤' },
-  { id: 'snacks', label: 'Snacks', emoji: '🍿' },
-  { id: 'produce', label: 'Fresh Produce', emoji: '🥦' },
-  { id: 'oils', label: 'Oils & Condiments', emoji: '🫙' },
-  { id: 'dairy', label: 'Dairy & Eggs', emoji: '🥛' },
   { id: 'superfoods', label: 'Superfoods', emoji: '🌱' },
+  { id: 'spices', label: 'Spices & Powders', emoji: '🫚' },
+  { id: 'beverages', label: 'Juices & Drinks', emoji: '🥤' },
+  { id: 'grains', label: 'Grains & Snacks', emoji: '🌾' },
 ]
 
 export const CURRENCY = 'TZS'
 
 export const products = [
+  // ── Current products ──────────────────────────────────────────────
   {
     id: 'p001',
-    name: 'Premium Basmati Rice',
-    description:
-      'Long-grain aromatic Basmati rice imported from India. Perfect for pilau, biriani, and fried rice dishes. Each grain stays separate when cooked, giving your dishes a restaurant-quality texture.',
-    shortDescription: 'Aromatic long-grain rice, perfect for pilau & biriani',
-    price: 8500,
-    currency: CURRENCY,
-    unit: 'per 2kg bag',
-    category: 'grains',
-    images: [
-      'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80',
-      'https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=600&q=80',
-    ],
-    inStock: true,
-    featured: true,
-    attributes: { weight: '2kg', origin: 'India', brand: 'Royal Feast' },
-  },
-  {
-    id: 'p002',
-    name: 'Tanzania Local Rice',
-    description:
-      'Locally grown rice from the Kilombero Valley, Morogoro. Rich in nutrients with a distinct flavour that pairs beautifully with mchuzi wa nyama, maharage, and ndizi. Unpolished and naturally wholesome.',
-    shortDescription: 'Kilombero Valley rice, earthy and nutritious',
-    price: 6000,
-    currency: CURRENCY,
-    unit: 'per 2kg bag',
-    category: 'grains',
-    images: [
-      'https://images.unsplash.com/photo-1568347877321-f8935c7dc5a0?w=600&q=80',
-    ],
-    inStock: true,
-    featured: true,
-    attributes: { weight: '2kg', origin: 'Kilombero, Tanzania', brand: 'Kilombero Harvest' },
-  },
-  {
-    id: 'p003',
-    name: 'Whole Grain Millet',
-    description:
-      'Sun-dried whole grain millet sourced from Dodoma, Tanzania. High in iron and fibre. Ideal for uji (porridge), fermented drinks, and traditional dishes. Store in a cool, dry place.',
-    shortDescription: 'Nutritious Dodoma millet for uji & porridge',
-    price: 3500,
-    currency: CURRENCY,
-    unit: 'per kg',
-    category: 'grains',
-    images: [
-      'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { weight: '1kg', origin: 'Dodoma, Tanzania' },
-  },
-  {
-    id: 'p004',
-    name: 'Malta Guinness (Pack of 6)',
-    description:
-      'The classic non-alcoholic malt beverage loved across East Africa. Rich in B vitamins and brewed for a full-bodied, refreshing taste. Great for all ages. Serve chilled for best experience.',
-    shortDescription: 'Classic East African malt drink, pack of 6 cans',
-    price: 12000,
-    currency: CURRENCY,
-    unit: 'per 6-pack',
-    category: 'beverages',
-    images: [
-      'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80',
-    ],
-    inStock: true,
-    featured: true,
-    attributes: { brand: 'Malta Guinness', volume: '6 × 330ml' },
-  },
-  {
-    id: 'p005',
-    name: 'Hibiscus Drink (Kinywaji cha Uyoga) 1L',
-    description:
-      'Freshly made hibiscus drink infused with ginger, cloves, and cinnamon. Made with no artificial preservatives. A refreshing, antioxidant-rich beverage popular across Tanzania. Keep refrigerated after opening.',
-    shortDescription: 'Fresh hibiscus & ginger drink, locally made',
-    price: 4000,
-    currency: CURRENCY,
-    unit: 'per 1L bottle',
-    category: 'beverages',
-    images: [
-      'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { volume: '1L', brand: 'Bora Drinks' },
-  },
-  {
-    id: 'p006',
-    name: 'Africafe Instant Coffee (50g)',
-    description:
-      'Tanzania\'s own premium instant coffee made from 100% Tanzanian Arabica beans grown on the slopes of Mount Kilimanjaro. Rich, bold flavour with a smooth finish. A true taste of Tanzania in every cup.',
-    shortDescription: 'Premium Tanzanian Arabica instant coffee',
-    price: 7500,
-    currency: CURRENCY,
-    unit: 'per 50g jar',
-    category: 'beverages',
-    images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    ],
-    inStock: false,
-    featured: false,
-    attributes: { brand: 'Africafe', weight: '50g', origin: 'Kilimanjaro, Tanzania' },
-  },
-  {
-    id: 'p007',
-    name: 'Plantain Chips (Salted)',
-    description:
-      'Crispy thinly sliced plantain chips lightly seasoned with sea salt. Fried in sunflower oil. A classic snack made from locally sourced ripe plantains from the Kagera Region. Great for entertaining.',
-    shortDescription: 'Crispy salted plantain chips, locally made',
-    price: 3000,
-    currency: CURRENCY,
-    unit: 'per 200g pack',
-    category: 'snacks',
-    images: [
-      'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=600&q=80',
-    ],
-    inStock: true,
-    featured: true,
-    attributes: { weight: '200g', brand: 'Bora Snacks' },
-  },
-  {
-    id: 'p008',
-    name: 'Groundnut (Karanga) Brittle',
-    description:
-      'Traditional peanut brittle made with roasted groundnuts and cane sugar. No artificial additives. A beloved Tanzanian snack (karanga brittle) enjoyed by all ages. Individually wrapped pieces.',
-    shortDescription: 'Traditional Tanzanian peanut (karanga) brittle',
-    price: 2000,
-    currency: CURRENCY,
-    unit: 'per pack (10 pieces)',
-    category: 'snacks',
-    images: [
-      'https://images.unsplash.com/photo-1541532713592-79a0317b272b?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { weight: '150g', brand: 'Mama\'s Kitchen' },
-  },
-  {
-    id: 'p009',
-    name: 'Fresh Tomatoes',
-    description:
-      'Ripe, juicy tomatoes freshly sourced from local farms in Arusha. Perfect for mchuzi, pilau, salads, and kachumbari. Delivered fresh within 24 hours of harvest.',
-    shortDescription: 'Farm-fresh tomatoes from Arusha',
-    price: 2500,
-    currency: CURRENCY,
-    unit: 'per kg',
-    category: 'produce',
-    images: [
-      'https://images.unsplash.com/photo-1546470427-227c5f56e6f8?w=600&q=80',
-      'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { origin: 'Arusha, Tanzania' },
-  },
-  {
-    id: 'p010',
-    name: 'Mchicha (Amaranth Leaves)',
-    description:
-      'Fresh mchicha (amaranth leaves) grown organically in Dar es Salaam. A staple green vegetable in Tanzanian cooking — essential for mchicha wa nazi (coconut amaranth) and stews. High in iron and vitamins.',
-    shortDescription: 'Fresh organic amaranth leaves, a Tanzanian staple',
-    price: 1500,
-    currency: CURRENCY,
-    unit: 'per bunch',
-    category: 'produce',
-    images: [
-      'https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { origin: 'Dar es Salaam, Tanzania' },
-  },
-  {
-    id: 'p011',
-    name: 'Coconut Oil (Cold-Pressed)',
-    description:
-      'Pure cold-pressed coconut oil from the coastal Tanga Region of Tanzania. Rich in natural lauric acid and nutrients. Used in coastal Swahili cooking — perfect for maandazi, pilau, and wali wa nazi.',
-    shortDescription: 'Pure cold-pressed coconut oil from Tanga coast',
-    price: 6500,
-    currency: CURRENCY,
-    unit: 'per 500ml bottle',
-    category: 'oils',
-    images: [
-      'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80',
-    ],
-    inStock: true,
-    featured: true,
-    attributes: { volume: '500ml', origin: 'Tanga, Tanzania' },
-  },
-  {
-    id: 'p012',
-    name: 'Pilipili Sauce (Hot Chilli Sauce)',
-    description:
-      'Homemade Tanzanian pilipili sauce made with fresh red chillis, garlic, and spices. The essential condiment for nyama choma, mishkaki, and chips. Medium-hot heat level. Made fresh in Dar es Salaam.',
-    shortDescription: 'Authentic Tanzanian hot chilli (pilipili) sauce',
-    price: 5500,
-    currency: CURRENCY,
-    unit: 'per 250ml jar',
-    category: 'oils',
-    images: [
-      'https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { weight: '250ml', brand: 'Mama Nzuri' },
-  },
-  {
-    id: 'p013',
-    name: 'Fresh Farm Eggs (Crate)',
-    description:
-      'Fresh free-range eggs from local farms in Dar es Salaam. Collected daily for maximum freshness. Higher in omega-3 and vitamin D compared to cage-raised eggs. Great for all cooking.',
-    shortDescription: 'Free-range farm-fresh eggs, collected daily',
-    price: 12000,
-    currency: CURRENCY,
-    unit: 'per crate (30 eggs)',
-    category: 'dairy',
-    images: [
-      'https://images.unsplash.com/photo-1518569656558-1f25e69d2b1d?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { quantity: '30 eggs', origin: 'Dar es Salaam, Tanzania' },
-  },
-  {
-    id: 'p014',
-    name: 'Evaporated Milk (Carnation)',
-    description:
-      'Thick, creamy evaporated milk — a pantry staple for Tanzanian cooking. Use in uji, chai, tea, and desserts. Also great for enriching stews and sauces. Pack of 6 tins.',
-    shortDescription: 'Creamy evaporated milk, pack of 6 tins',
-    price: 18000,
-    currency: CURRENCY,
-    unit: 'per 6-tin pack',
-    category: 'dairy',
-    images: [
-      'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80',
-    ],
-    inStock: true,
-    featured: false,
-    attributes: { brand: 'Carnation', volume: '6 × 410ml' },
-  },
-  {
-    id: 'p015',
-    name: 'Spiced Cassava Chips (Muhogo)',
-    description:
-      'Crunchy cassava (muhogo) chips seasoned with chilli and lime. Made from locally sourced cassava roots in Dar es Salaam, fried to a golden crisp. A satisfying Tanzanian street-food snack.',
-    shortDescription: 'Chilli-lime cassava (muhogo) chips, locally made',
-    price: 2500,
-    currency: CURRENCY,
-    unit: 'per 150g pack',
-    category: 'snacks',
-    images: [
-      'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80',
-    ],
-    inStock: false,
-    featured: false,
-    attributes: { weight: '150g', brand: 'Dar Bites' },
-  },
-  {
-    id: 'p016',
     name: 'Organic Chia Seeds',
     description:
-      'Premium organic chia seeds, one of nature\'s most nutrient-dense superfoods. Packed with omega-3 fatty acids, fibre, protein, calcium, and antioxidants. Add to smoothies, yoghurt, juices, or soak overnight for chia pudding. Tasteless and odourless — easy to incorporate into any meal or drink.',
+      'Premium organic chia seeds — one of nature\'s most nutrient-dense superfoods. Packed with omega-3 fatty acids, fibre, protein, calcium, and antioxidants. Add to smoothies, yoghurt, juices, or soak overnight for chia pudding. Tasteless and odourless, easy to add to any meal or drink.',
     shortDescription: 'Nutrient-dense organic chia seeds — omega-3, fibre & protein',
     price: 9500,
     currency: CURRENCY,
@@ -284,7 +25,120 @@ export const products = [
     ],
     inStock: true,
     featured: true,
+    comingSoon: false,
     attributes: { weight: '250g', origin: 'Imported', brand: 'PureSeed' },
+  },
+  {
+    id: 'p002',
+    name: 'Star Anise Powder',
+    description:
+      'Finely ground star anise powder made from whole dried star anise pods. A warming, liquorice-flavoured spice used in teas, curries, marinades, and traditional remedies. Rich in antioxidants and known for its antimicrobial properties. A little goes a long way.',
+    shortDescription: 'Finely ground star anise — warming spice with health benefits',
+    price: 5000,
+    currency: CURRENCY,
+    unit: 'per 50g pack',
+    category: 'spices',
+    images: [
+      'https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&q=80',
+      'https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=600&q=80',
+    ],
+    inStock: true,
+    featured: true,
+    comingSoon: false,
+    attributes: { weight: '50g', origin: 'Imported', brand: 'KibaSpice' },
+  },
+  {
+    id: 'p003',
+    name: 'Turmeric Powder',
+    description:
+      'Pure ground turmeric root powder with a naturally vibrant golden colour. High in curcumin — a powerful anti-inflammatory and antioxidant compound. Use in golden milk, teas, rice, soups, and curries. One of the most researched health spices in the world.',
+    shortDescription: 'Pure golden turmeric — anti-inflammatory & antioxidant rich',
+    price: 4500,
+    currency: CURRENCY,
+    unit: 'per 100g pack',
+    category: 'spices',
+    images: [
+      'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80',
+      'https://images.unsplash.com/photo-1542444459-81d0022bf0a6?w=600&q=80',
+    ],
+    inStock: true,
+    featured: true,
+    comingSoon: false,
+    attributes: { weight: '100g', origin: 'Imported', brand: 'KibaSpice' },
+  },
+  {
+    id: 'p004',
+    name: 'Banana Beer',
+    description:
+      'Traditional East African banana beer (mbege) brewed from ripe Tanzanian bananas. Naturally fermented, lightly alcoholic, and full of earthy, fruity flavour. A cultural staple across the Kilimanjaro and Kagera regions. Served chilled.',
+    shortDescription: 'Traditional Tanzanian fermented banana beer (mbege)',
+    price: 6000,
+    currency: CURRENCY,
+    unit: 'per 500ml bottle',
+    category: 'beverages',
+    images: [
+      'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=600&q=80',
+    ],
+    inStock: true,
+    featured: true,
+    comingSoon: false,
+    attributes: { volume: '500ml', origin: 'Tanzania', brand: 'Kiba Brew' },
+  },
+  {
+    id: 'p005',
+    name: 'Banana Wine',
+    description:
+      'Smooth, lightly sweet banana wine crafted from locally grown Tanzanian bananas. Naturally fermented and carefully bottled for a clean, fruity finish. Lower in alcohol than grape wine with a distinct tropical character. Best served chilled.',
+    shortDescription: 'Smooth Tanzanian banana wine — light, fruity & natural',
+    price: 12000,
+    currency: CURRENCY,
+    unit: 'per 750ml bottle',
+    category: 'beverages',
+    images: [
+      'https://images.unsplash.com/photo-1474722883778-792e7990302f?w=600&q=80',
+    ],
+    inStock: true,
+    featured: false,
+    comingSoon: false,
+    attributes: { volume: '750ml', origin: 'Tanzania', brand: 'Kiba Brew' },
+  },
+
+  // ── Coming Soon ───────────────────────────────────────────────────
+  {
+    id: 'p006',
+    name: 'Beetroot Powder',
+    description:
+      'Cold-pressed beetroot powder made from whole dried beetroots. Rich in nitrates, iron, and folate — known to support blood pressure, stamina, and energy levels. Mix into smoothies, juices, or baked goods for a vibrant natural colour and a nutrition boost.',
+    shortDescription: 'Cold-pressed beetroot powder — iron, nitrates & natural energy',
+    price: 7500,
+    currency: CURRENCY,
+    unit: 'per 100g pack',
+    category: 'superfoods',
+    images: [
+      'https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?w=600&q=80',
+    ],
+    inStock: false,
+    featured: false,
+    comingSoon: true,
+    attributes: { weight: '100g', origin: 'Imported', brand: 'PureSeed' },
+  },
+  {
+    id: 'p007',
+    name: 'Popped Rice',
+    description:
+      'Light, airy popped rice made from locally sourced Tanzanian rice grains. A crunchy, low-calorie snack that is naturally gluten-free and easy to digest. Eat on its own, mix with honey and nuts, or use as a topping for yoghurt and smoothie bowls.',
+    shortDescription: 'Light crunchy popped rice — gluten-free, locally sourced',
+    price: 3500,
+    currency: CURRENCY,
+    unit: 'per 150g bag',
+    category: 'grains',
+    images: [
+      'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80',
+    ],
+    inStock: false,
+    featured: false,
+    comingSoon: true,
+    attributes: { weight: '150g', origin: 'Tanzania' },
   },
 ]
 
@@ -297,5 +151,5 @@ export function getProductsByCategory(category) {
 }
 
 export function getFeaturedProducts() {
-  return products.filter((p) => p.featured)
+  return products.filter((p) => p.featured && !p.comingSoon)
 }

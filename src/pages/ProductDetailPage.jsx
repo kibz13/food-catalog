@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ChevronLeft, Minus, Plus, ShoppingCart } from 'lucide-react'
+import { ChevronLeft, Clock, Minus, Plus, ShoppingCart } from 'lucide-react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { toast } from 'sonner'
@@ -98,9 +98,13 @@ export default function ProductDetailPage() {
         {/* Product Info */}
         <div>
           <div className="mb-2">
-            <Badge variant={product.inStock ? 'success' : 'danger'}>
-              {product.inStock ? t('product.inStock') : t('product.outOfStock')}
-            </Badge>
+            {product.comingSoon ? (
+              <Badge variant="warning">Coming Soon</Badge>
+            ) : (
+              <Badge variant={product.inStock ? 'success' : 'danger'}>
+                {product.inStock ? t('product.inStock') : t('product.outOfStock')}
+              </Badge>
+            )}
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
@@ -168,12 +172,25 @@ export default function ProductDetailPage() {
 
             <Button
               onClick={handleAddToCart}
-              disabled={!product.inStock}
+              disabled={!product.inStock || product.comingSoon}
               size="lg"
-              className="w-full bg-green-600 hover:bg-green-700 text-white"
+              className={`w-full text-white ${
+                product.comingSoon
+                  ? 'bg-amber-400 hover:bg-amber-400 cursor-not-allowed text-gray-900'
+                  : 'bg-green-600 hover:bg-green-700'
+              }`}
             >
-              <ShoppingCart className="mr-2 h-5 w-5" />
-              {product.inStock ? t('product.addToCart') : t('product.outOfStock')}
+              {product.comingSoon ? (
+                <>
+                  <Clock className="mr-2 h-5 w-5" />
+                  Coming Soon
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  {product.inStock ? t('product.addToCart') : t('product.outOfStock')}
+                </>
+              )}
             </Button>
           </div>
         </div>
