@@ -79,9 +79,9 @@ export const products = [
     images: [
       'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=600&q=80',
     ],
-    inStock: true,
-    featured: true,
-    comingSoon: false,
+    inStock: false,
+    featured: false,
+    comingSoon: true,
     attributes: { volume: '500ml', origin: 'Tanzania', brand: 'Kiba Brew' },
   },
   {
@@ -97,9 +97,9 @@ export const products = [
     images: [
       'https://images.unsplash.com/photo-1474722883778-792e7990302f?w=600&q=80',
     ],
-    inStock: true,
+    inStock: false,
     featured: false,
-    comingSoon: false,
+    comingSoon: true,
     attributes: { volume: '750ml', origin: 'Tanzania', brand: 'Kiba Brew' },
   },
 
