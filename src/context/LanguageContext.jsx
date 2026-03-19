@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 const translations = {
   en: {
+    'nav.about': 'About Us',
     'nav.catalog': 'Catalog',
     'nav.contact': 'Contact',
     'nav.openMenu': 'Open menu',
@@ -119,6 +120,7 @@ const translations = {
   },
 
   sw: {
+    'nav.about': 'Kuhusu Sisi',
     'nav.catalog': 'Katalogi',
     'nav.contact': 'Mawasiliano',
     'nav.openMenu': 'Fungua menyu',

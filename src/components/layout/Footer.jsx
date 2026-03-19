@@ -79,6 +79,7 @@ export default function Footer() {
         <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>{t('footer.rights', new Date().getFullYear())}</p>
           <div className="flex gap-4">
+            <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
             <Link to="/catalog" className="hover:text-white transition-colors">{t('nav.catalog')}</Link>
             <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
           </div>
